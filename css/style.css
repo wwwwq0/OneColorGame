@@ -1,0 +1,115 @@
+/* =====================================================
+   OneColorGame - 场景式闯关游戏 全局样式
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #0a0a1a;
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameWrapper {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+        0 0 40px rgba(22, 93, 255, 0.3),
+        0 0 80px rgba(22, 93, 255, 0.1),
+        0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    cursor: default;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+/* 加载提示 */
+#loadingScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a0a1a;
+    color: #ffffff;
+    font-size: 20px;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+#loadingScreen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #165DFF;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 响应式缩放 */
+@media (max-width: 840px) {
+    #gameWrapper {
+        width: 100vw;
+        height: 75vw;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+    #gameCanvas {
+        border-radius: 0;
+    }
+}
+
+@media (max-height: 640px) {
+    #gameWrapper {
+        height: 100vh;
+        width: 133.33vh;
+        max-width: 100vw;
+        border-radius: 0;
+    }
+}
+
+/* 触摸设备隐藏鼠标指针 */
+@media (hover: none) and (pointer: coarse) {
+    #gameCanvas {
+        cursor: none;
+    }
+}
